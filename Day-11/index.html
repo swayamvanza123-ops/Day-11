@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>NovaStock | Inventory Management</title>
+
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+
+            <div class="brand-logo">
+                📦
+            </div>
+
+            <div>
+                <h2>NovaStock</h2>
+                <span>Inventory Pro</span>
+            </div>
+
+        </div>
+
+
+        <div class="menu-title">
+            MAIN MENU
+        </div>
+
+
+        <nav>
+
+            <a href="#dashboard"
+               class="nav-item active"
+               id="dashboardNav">
+
+                <span class="nav-icon">⌂</span>
+
+                <span>Dashboard</span>
+
+            </a>
+
+
+            <a href="#products"
+               class="nav-item"
+               id="productsNav">
+
+                <span class="nav-icon">▣</span>
+
+                <span>Products</span>
+
+            </a>
+
+
+            <a href="#categories"
+               class="nav-item"
+               id="categoriesNav">
+
+                <span class="nav-icon">◈</span>
+
+                <span>Categories</span>
+
+            </a>
+
+
+            <a href="#vendors"
+               class="nav-item"
+               id="vendorsNav">
+
+                <span class="nav-icon">♙</span>
+
+                <span>Vendors</span>
+
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <div class="upgrade-card">
+
+                <div class="upgrade-icon">
+                    ✨
+                </div>
+                <p>
+                    JavaScript Modules
+                </p>
+
+                <div class="module-tag">
+                    ES6 MODULES
+                </div>
+
+            </div>
+
+
+            <div class="profile">
+
+                <div class="profile-avatar">
+                    S
+                </div>
+
+                <div>
+                    <strong>Inventory Admin</strong>
+                    <span>Administrator</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </aside>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="main">
+
+
+        <!-- TOP HEADER -->
+
+        <header class="top-header" id="dashboard">
+
+            <div>
+
+                <span class="page-label">
+                    OVERVIEW
+                </span>
+
+                <h1>
+                    Inventory Dashboard
+                </h1>
+
+                <p>
+                    Manage your products and stock in one place.
+                </p>
+
+            </div>
+
+
+            <div class="header-actions">
+
+                <div class="date-box">
+                    📅 Today
+                </div>
+
+                <button
+                    id="newProductBtn"
+                    class="add-btn">
+
+                    <span>＋</span>
+                    New Product
+
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <!-- ================= STAT CARDS ================= -->
+
+        <section class="stats">
+
+
+            <div class="stat-card blue-card">
+
+                <div class="stat-top">
+
+                    <div class="stat-icon">
+                        📦
+                    </div>
+
+                    <span class="stat-label">
+                        PRODUCTS
+                    </span>
+
+                </div>
+
+                <h2 id="totalProducts">
+                    0
+                </h2>
+
+                <p>
+                    Total products
+                </p>
+
+            </div>
+
+
+            <div class="stat-card green-card">
+
+                <div class="stat-top">
+
+                    <div class="stat-icon">
+                        📊
+                    </div>
+
+                    <span class="stat-label">
+                        STOCK
+                    </span>
+
+                </div>
+
+                <h2 id="totalStock">
+                    0
+                </h2>
+
+                <p>
+                    Items in stock
+                </p>
+
+            </div>
+
+
+            <div class="stat-card orange-card">
+
+                <div class="stat-top">
+
+                    <div class="stat-icon">
+                        ⚠️
+                    </div>
+
+                    <span class="stat-label">
+                        ALERT
+                    </span>
+
+                </div>
+
+                <h2 id="lowStock">
+                    0
+                </h2>
+
+                <p>
+                    Low stock products
+                </p>
+
+            </div>
+
+
+            <div class="stat-card purple-card">
+
+                <div class="stat-top">
+
+                    <div class="stat-icon">
+                        ₹
+                    </div>
+
+                    <span class="stat-label">
+                        VALUE
+                    </span>
+
+                </div>
+
+                <h2 id="inventoryValue">
+                    ₹0
+                </h2>
+
+                <p>
+                    Inventory value
+                </p>
+
+            </div>
+
+
+        </section>
+
+
+        <!-- ================= PRODUCTS ================= -->
+
+        <section
+            class="products-section"
+            id="products">
+
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="section-label">
+                        INVENTORY
+                    </span>
+
+                    <h2>
+                        Product Management
+                    </h2>
+
+                    <p>
+                        View and manage all your products.
+                    </p>
+
+                </div>
+
+
+                <button
+                    id="clearFilters"
+                    class="outline-btn">
+
+                    ↻ Reset
+
+                </button>
+
+            </div>
+
+
+            <!-- SEARCH -->
+
+            <div class="toolbar">
+
+                <div class="search-box">
+
+                    <span>
+                        🔍
+                    </span>
+
+                    <input
+                        id="searchInput"
+                        type="text"
+                        placeholder="Search products or categories..."
+                    >
+
+                </div>
+
+
+                <select id="filterSelect">
+
+                    <option value="all">
+                        All Products
+                    </option>
+
+                    <option value="available">
+                        Available
+                    </option>
+
+                    <option value="low">
+                        Low Stock
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- TABLE -->
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                    <tr>
+
+                        <th>
+                            PRODUCT
+                        </th>
+
+                        <th>
+                            CATEGORY
+                        </th>
+
+                        <th>
+                            PRICE
+                        </th>
+
+                        <th>
+                            STOCK
+                        </th>
+
+                        <th>
+                            STATUS
+                        </th>
+
+                        <th>
+                            ACTION
+                        </th>
+
+                    </tr>
+
+                    </thead>
+
+
+                    <tbody
+                        id="productTableBody">
+                    </tbody>
+
+                </table>
+
+
+                <div
+                    id="emptyMessage"
+                    class="empty-message">
+
+                    <div>
+                        📦
+                    </div>
+
+                    <h3>
+                        No products found
+                    </h3>
+
+                    <p>
+                        Try changing your search or filter.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= CATEGORIES ================= -->
+
+        <section
+            class="categories-section"
+            id="categories">
+
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="section-label">
+                        CATALOG
+                    </span>
+
+                    <h2>
+                        Browse Categories
+                    </h2>
+
+                    <p>
+                        Select a category to explore products.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="category-grid">
+
+
+                <!-- ELECTRONICS -->
+
+                <button
+                    class="category-card electronics"
+                    data-category="Electronics">
+
+
+                    <div class="category-background">
+                        💻
+                    </div>
+
+
+                    <div class="category-content">
+
+                        <div class="category-icon">
+                            💻
+                        </div>
+
+                        <h3>
+                            Electronics
+                        </h3>
+
+                        <p>
+                            Laptops, monitors and devices
+                        </p>
+
+                        <div class="category-bottom">
+
+                            <span id="electronicsCount">
+                                0 Products
+                            </span>
+
+                            <span class="category-arrow">
+                                →
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </button>
+
+
+                <!-- ACCESSORIES -->
+
+                <button
+                    class="category-card accessories"
+                    data-category="Accessories">
+
+
+                    <div class="category-background">
+                        🖱️
+                    </div>
+
+
+                    <div class="category-content">
+
+                        <div class="category-icon">
+                            🖱️
+                        </div>
+
+                        <h3>
+                            Accessories
+                        </h3>
+
+                        <p>
+                            Mice, keyboards and cables
+                        </p>
+
+                        <div class="category-bottom">
+
+                            <span id="accessoriesCount">
+                                0 Products
+                            </span>
+
+                            <span class="category-arrow">
+                                →
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </button>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= VENDORS ================= -->
+
+        <section
+            class="vendors-section"
+            id="vendors">
+
+
+            <div class="vendor-icon">
+                🏢
+            </div>
+
+
+            <div>
+
+                <span class="section-label">
+                    SUPPLIERS
+                </span>
+
+                <h2>
+                    Vendors
+                </h2>
+
+                <p>
+                    Manage your suppliers and vendor information.
+                </p>
+
+            </div>
+
+
+            <button class="vendor-btn">
+                Manage Vendors →
+            </button>
+
+        </section>
+
+
+    </main>
+
+</div>
+
+
+<!-- ================= MODAL ================= -->
+
+<div
+    class="modal"
+    id="productModal">
+
+
+    <div class="modal-content">
+
+
+        <div class="modal-top">
+
+            <div>
+
+                <span class="section-label">
+                    INVENTORY
+                </span>
+
+                <h2 id="modalTitle">
+                    Add New Product
+                </h2>
+
+                <p>
+                    Add product information below.
+                </p>
+
+            </div>
+
+
+            <button
+                id="closeModal"
+                class="close-btn">
+
+                ×
+
+            </button>
+
+        </div>
+
+
+        <form id="productForm">
+
+
+            <input
+                type="hidden"
+                id="productId"
+            >
+
+
+            <div class="form-group">
+
+                <label>
+                    Product Name
+                </label>
+
+                <input
+                    id="productName"
+                    type="text"
+                    placeholder="Example: MacBook Air"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Category
+                </label>
+
+                <select
+                    id="productCategory"
+                    required>
+
+                    <option value="">
+                        Select category
+                    </option>
+
+                    <option value="Electronics">
+                        Electronics
+                    </option>
+
+                    <option value="Accessories">
+                        Accessories
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-row">
+
+                <div class="form-group">
+
+                    <label>
+                        Price
+                    </label>
+
+                    <div class="input-with-icon">
+
+                        <span>₹</span>
+
+                        <input
+                            id="productPrice"
+                            type="number"
+                            min="1"
+                            placeholder="50000"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Stock
+                    </label>
+
+                    <input
+                        id="productStock"
+                        type="number"
+                        min="0"
+                        placeholder="20"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    id="cancelBtn"
+                    class="cancel-btn">
+
+                    Cancel
+
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="save-btn">
+
+                    Save Product
+
+                </button>
+
+            </div>
+
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<script
+    type="module"
+    src="./js/main.js">
+</script>
+
+</body>
+</html>
